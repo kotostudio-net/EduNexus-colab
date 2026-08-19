@@ -1,11 +1,33 @@
 // 請將此處替換為您在 Google Apps Script 部署後取得的「網頁應用程式網址」
-const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxrgw-yLQ045-Ur8N-4hxDZxYHdW_eyDzo349ZJ-odxT4zjMURWghdvc0WS_aYwpzIq9Q/exec";
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxrgw-YLQ045-Uh8NDZxYHDW_eyDzo349ZJ-odxT4zjMURWghdvc0WS_aYwpzIq9Q/exec";
+
+// 切換密碼顯示/隱藏（眼睛按鈕點擊事件）
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password-input");
+    const eyeIcon = document.getElementById("eye-icon");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        // 變更為「閉眼/斜線」圖示
+        eyeIcon.innerHTML = `
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+        `;
+    } else {
+        passwordInput.type = "password";
+        // 變更回原本的「睜眼」圖示
+        eyeIcon.innerHTML = `
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        `;
+    }
+}
 
 // 驗證密碼並向外部 API 請求報價數據
 async function verifyPassword() {
     const inputPassword = document.getElementById("password-input").value;
     const errorMsg = document.getElementById("error-msg");
-    const button = document.querySelector(".auth-card button");
+    const button = document.querySelector(".submit-btn");
 
     if (!inputPassword) {
         errorMsg.innerText = "請輸入密碼";
@@ -81,12 +103,10 @@ function renderQuotation(dataArray) {
 
 // 啟用前端防護（防右鍵、防 F12 快速鍵）
 function enableSecurityFeatures() {
-    // 1. 禁用右鍵選單
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
 
-    // 2. 禁用常用開發者工具快捷鍵
     document.addEventListener('keydown', function(e) {
         if (e.key === 'F12') {
             e.preventDefault();
