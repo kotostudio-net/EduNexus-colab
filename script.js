@@ -1,5 +1,5 @@
 // 請將此處替換為您在 Google Apps Script 部署後取得的「網頁應用程式網址」
-const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxrgw-YLQ045-Uh8NDZxYHDW_eyDzo349ZJ-odxT4zjMURWghdvc0WS_aYwpzIq9Q/exec";
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwci_9HG07tNzDTqK_LYH6DoSCjTUctP605z3uvgQR_gZ1UlWfT1Utp-jDVNDtVV1i7gg/exec";
 
 // 切換密碼顯示/隱藏（眼睛按鈕點擊事件）
 function togglePasswordVisibility() {
