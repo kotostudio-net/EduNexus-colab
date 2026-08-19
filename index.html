@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國際產學合作與人才招募雙向一頁式網頁開發案 - 專業報價單</title>
+    <!-- 引入 Google 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* 企業深藍 */
+            --secondary-color: #0284c7; /* 專業亮藍 */
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        /* 頂部標題區 */
+        .header {
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .title-box h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .title-box p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .meta-box {
+            text-align: right;
+        }
+
+        .meta-box p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .meta-box .date {
+            font-weight: 650;
+            color: var(--text-main);
+        }
+
+        /* 表格區 */
+        .content {
+            padding: 40px;
+        }
+
+        h2.section-title {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 16px 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        td.item-num {
+            font-weight: 600;
+            color: var(--secondary-color);
+            text-align: center;
+            width: 60px;
+        }
+
+        td.price {
+            text-align: right;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* 總計區 */
+        .total-section {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .total-row.grand-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+
+        .grand-total span:last-child {
+            color: #0284c7;
+        }
+
+        /* 備註區 */
+        .notes {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .notes h3 {
+            font-size: 15px;
+            color: #b45309;
+            margin-bottom: 12px;
+        }
+
+        .notes ol {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #78350f;
+        }
+
+        .notes li {
+            margin-bottom: 8px;
+        }
+
+        /* 響應式微調 */
+        @media (max-width: 768px) {
+            .header, .content {
+                padding: 20px;
+            }
+            .meta-box {
+                text-align: left;
+            }
+            .total-row {
+                width: 100%;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid var(--border-color);
+                border-radius: 6px;
+                padding: 10px;
+            }
+            td {
+                padding: 8px 0;
+                text-align: left !important;
+            }
+            td.item-num {
+                text-align: left !important;
+            }
+            td.price::before {
+                content: "費用：";
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 頂部資訊 -->
+        <div class="header">
+            <div class="title-box">
+                <h1>網頁前端開發與雙向行銷企劃報價單</h1>
+                <p>專案名稱：國際產學合作與人才招募雙向一頁式網頁開發案（企業端 ＋ 東南亞校方/學生端）</p>
+            </div>
+            <div class="meta-box">
+                <p>報價日期：<span class="date">2026 / 08 / 19</span></p>
+                <p>有效期限：30 天</p>
+            </div>
+        </div>
+
+        <!-- 內容表格 -->
+        <div class="content">
+            <h2 class="section-title">一、 報價明細表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>項次</th>
+                        <th>項目名稱與規格說明</th>
+                        <th style="text-align: right;">預估費用 (NTD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="item-num">1</td>
+                        <td><strong>企業端：行銷企劃與文案撰寫</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對台灣在地企業主痛點進行企劃，聚焦：解決缺工危機、政府產學專班法規解析、實習生穩定留才機制等全站文案（含 2 次修改）。</span></td>
+                        <td class="price">$ 7,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">2</td>
+                        <td><strong>東南亞端：行銷企劃與文案撰寫</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對東南亞校方與學生痛點進行企劃，聚焦：政府政策補助（新型專班/產攜）、生活照顧與留台願景全站文案（含 2 次修改）。</span></td>
+                        <td class="price">$ 7,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">3</td>
+                        <td><strong>企業端：UI/UX 視覺與版面設計</strong><br><span style="font-size: 13px; color: var(--text-muted);">專為企業主打造的沉穩、專業商務風格，著重法規信任感與數據效益，完成 RWD 響應式介面設計。</span></td>
+                        <td class="price">$ 10,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">4</td>
+                        <td><strong>東南亞端：UI/UX 視覺與版面設計</strong><br><span style="font-size: 13px; color: var(--text-muted);">專為海外學生打造的明亮、具親和力與行動優先（Mobile-First）的視覺風格，完成 RWD 響應式介面設計。</span></td>
+                        <td class="price">$ 10,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">5</td>
+                        <td><strong>雙網頁前端程式開發</strong><br><span style="font-size: 13px; color: var(--text-muted);">HTML5/CSS3/JavaScript 程式撰寫，實作兩份獨立網頁的互動特效、捲動動畫及跨裝置流暢度優化。</span></td>
+                        <td class="price">$ 14,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">6</td>
+                        <td><strong>多語系切換架構建置</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對東南亞學生端建置前端語系切換技術架構（如繁中/英文切換），確保多語系擴充彈性。</span></td>
+                        <td class="price">$ 6,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">7</td>
+                        <td><strong>雙模組智慧表單與後端串接</strong><br><span style="font-size: 13px; color: var(--text-muted);">分別建置兩站專屬互動表單（企業端與東南亞端），並安全串接後端郵件即時通知。</span></td>
+                        <td class="price">$ 6,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">8</td>
+                        <td><strong>前端結構化數據與搜尋引擎技術建置</strong><br><span style="font-size: 13px; color: var(--text-muted);">包含雙語系 Meta/OG 標籤、FAQPage Schema (JSON-LD) 結構化語法與語意化 HTML 架構。</span></td>
+                        <td class="price">$ 6,000</td>
+                    </tr>
+                    <tr>
+                        <td class="item-num">9</td>
+                        <td><strong>網域與主機環境配置設定</strong><br><span style="font-size: 13px; color: var(--text-muted);">協助首次上線環境架設、網域與 DNS 綁定、開通 SSL 安全憑證（HTTPS）及伺服器基礎部署。</span></td>
+                        <td class="price">$ 4,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 總計區 -->
+            <div class="total-section">
+                <div class="total-row">
+                    <span>未稅總計 (Subtotal)</span>
+                    <span>$ 70,000</span>
+                </div>
+                <div class="total-row">
+                    <span>營業稅 (5% VAT)</span>
+                    <span>$ 3,500</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>含稅總計 (Total)</span>
+                    <span>NT$ 73,500</span>
+                </div>
+            </div>
+
+            <!-- 備註區 -->
+            <div class="notes">
+                <h3>三、 專案條款與備註說明</h3>
+                <ol>
+                    <li><strong>多語系與翻譯協定</strong>：第 6 項包含前端多語系切換技術架構。文字內容由客戶提供或協助產出初稿，若需大量專業外文翻譯另議。</li>
+                    <li><strong>網域與主機維護</strong>：第 9 項僅包含首次上線環境設定。後續之網域年費、付費主機續約及日常維護，採實報實銷或另簽維護合約。</li>
+                    <li><strong>驗收與保固</strong>：各階段（UI 設計、前端切換、正式上線）皆設有驗收點。網站正式上線後，提供 <strong>3 個月內免費技術除錯（Bug Fixes）</strong>。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
