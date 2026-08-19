@@ -30,6 +30,86 @@
             padding: 40px 20px;
         }
 
+        /* 密碼驗證遮罩層 */
+        #auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-card h2 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .auth-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .auth-card input:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .auth-card button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .auth-card button:hover {
+            background-color: #1e40af;
+        }
+
+        .error-msg {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* 主內容保護容器 (預設隱藏) */
+        #secure-container {
+            display: none;
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -40,7 +120,6 @@
             border-top: 6px solid var(--primary-color);
         }
 
-        /* 頂部標題區 */
         .header {
             padding: 40px;
             border-bottom: 1px solid var(--border-color);
@@ -77,7 +156,6 @@
             color: var(--text-main);
         }
 
-        /* 表格區 */
         .content {
             padding: 40px;
         }
@@ -129,7 +207,6 @@
             white-space: nowrap;
         }
 
-        /* 總計區 */
         .total-section {
             background-color: #f8fafc;
             border: 1px solid var(--border-color);
@@ -162,7 +239,6 @@
             color: #0284c7;
         }
 
-        /* 備註區 */
         .notes {
             background-color: #fffbeb;
             border: 1px solid #fef3c7;
@@ -186,7 +262,6 @@
             margin-bottom: 8px;
         }
 
-        /* 響應式微調 */
         @media (max-width: 768px) {
             .header, .content {
                 padding: 20px;
@@ -225,112 +300,76 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- 頂部資訊 -->
-        <div class="header">
-            <div class="title-box">
-                <h1>網頁開發與雙向行銷企劃報價單</h1>
-                <p>專案名稱：國際產學合作與人才招募雙向一頁式網頁開發案（企業端 ＋ 東南亞校方/學生端）</p>
-            </div>
-            <div class="meta-box">
-                <p>報價日期：<span class="date">2026 / 08 / 19</span></p>
-                <p>有效期限：30 天</p>
-            </div>
+    <!-- 密碼驗證遮罩層 -->
+    <div id="auth-overlay">
+        <div class="auth-card">
+            <h2>專案報價單保護</h2>
+            <p>請輸入授權密碼以檢閱內容</p>
+            <input type="password" id="password-input" placeholder="請輸入解密密碼">
+            <button onclick="verifyPassword()">解鎖檢視報價</button>
+            <div id="error-msg" class="error-msg"></div>
         </div>
+    </div>
 
-        <!-- 內容表格 -->
-        <div class="content">
-            <h2 class="section-title">一、 報價明細表</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>項次</th>
-                        <th>項目名稱與規格說明</th>
-                        <th style="text-align: right;">預估費用 (NTD)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="item-num">1</td>
-                        <td><strong>企業端：行銷企劃與文案撰寫</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對台灣在地企業主痛點進行企劃，聚焦：解決缺工危機、政府產學專班法規解析、實習生穩定留才機制等全站文案（含 2 次修改）。</span></td>
-                        <td class="price">$ 7,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">2</td>
-                        <td><strong>東南亞端：行銷企劃與文案撰寫</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對東南亞校方與學生痛點進行企劃，聚焦：政府政策補助（新型專班/產攜）、生活照顧與留台願景全站文案（含 2 次修改）。</span></td>
-                        <td class="price">$ 7,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">3</td>
-                        <td><strong>企業端：UI/UX 視覺與版面設計</strong><br><span style="font-size: 13px; color: var(--text-muted);">專為企業主打造的沉穩、專業商務風格，著重法規信任感與數據效益，完成 RWD 響應式介面設計。</span></td>
-                        <td class="price">$ 10,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">4</td>
-                        <td><strong>東南亞端：UI/UX 視覺與版面設計</strong><br><span style="font-size: 13px; color: var(--text-muted);">專為海外學生打造的明亮、具親和力與行動優先（Mobile-First）的視覺風格，完成 RWD 響應式介面設計。</span></td>
-                        <td class="price">$ 10,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">5</td>
-                        <td><strong>雙網頁前端程式開發</strong><br><span style="font-size: 13px; color: var(--text-muted);">HTML5/CSS3/JavaScript 程式撰寫，實作兩份獨立網頁的互動特效、捲動動畫及跨裝置流暢度優化。</span></td>
-                        <td class="price">$ 14,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">6</td>
-                        <td><strong>多語系切換架構建置</strong><br><span style="font-size: 13px; color: var(--text-muted);">針對東南亞學生端建置前端語系切換技術架構（如繁中/英文切換），確保多語系擴充彈性。</span></td>
-                        <td class="price">$ 6,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">7</td>
-                        <td><strong>雙模組智慧表單與後端串接</strong><br><span style="font-size: 13px; color: var(--text-muted);">分別建置兩站專屬互動表單（企業端與東南亞端），並安全串接後端郵件即時通知。</span></td>
-                        <td class="price">$ 6,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">8</td>
-                        <td><strong>前端結構化數據與搜尋引擎技術建置</strong><br><span style="font-size: 13px; color: var(--text-muted);">包含雙語系 Meta/OG 標籤、FAQPage Schema (JSON-LD) 結構化語法與語意化 HTML 架構。</span></td>
-                        <td class="price">$ 6,000</td>
-                    </tr>
-                    <tr>
-                        <td class="item-num">9</td>
-                        <td><strong>網域與主機環境配置設定</strong><br><span style="font-size: 13px; color: var(--text-muted);">協助首次上線環境架設、網域與 DNS 綁定、開通 SSL 安全憑證（HTTPS）及伺服器基礎部署。</span></td>
-                        <td class="price">$ 4,000</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- 總計區 -->
-            <div class="total-section">
-                <div class="total-row">
-                    <span>未稅總計 (Subtotal)</span>
-                    <span>$ 70,000</span>
+    <!-- 主內容保護容器 -->
+    <div id="secure-container">
+        <div class="container">
+            <!-- 頂部資訊 -->
+            <div class="header">
+                <div class="title-box">
+                    <h1>網頁開發與雙向行銷企劃報價單</h1>
+                    <p>專案名稱：國際產學合作與人才招募雙向一頁式網頁開發案（企業端 ＋ 東南亞校方/學生端）</p>
                 </div>
-                <!-- <div class="total-row">
-                    <span>營業稅 (5% VAT)</span>
-                    <span>$ 3,500</span>
+                <div class="meta-box">
+                    <p>報價日期：<span class="date">2026 / 08 / 19</span></p>
+                    <p>有效期限：30 天</p>
                 </div>
-                <div class="total-row grand-total">
-                    <span>含稅總計 (Total)</span>
-                    <span>NT$ 73,500</span>
-                </div> -->
             </div>
 
-            <!-- 備註區 -->
-            <div class="notes">
-                <h3>二、 專案條款與備註說明</h3>
-                <ol>
-                    <li><strong>付款機制</strong>：本專案採用二階段付款方式：
-                        <ul style="list-style: none; padding-left: 15px; margin-top: 5px;">
-                            <li>• 第一期 (頭款 50%)：<strong>NT$ 35,000</strong> - 於合約確認與專案啟動時支付。</li>
-                            <li>• 第二期 (尾款 50%)：<strong>NT$ 35,000</strong> - 於專案驗收完成、網站正式上線後結清。</li>
-                        </ul>
-                    </li>
-                    <li><strong>多語系與翻譯協定</strong>：第 6 項包含前端多語系切換技術架構。文字內容由客戶提供或協助產出初稿，若需大量專業外文翻譯另議。</li>
-                    <li><strong>網域與主機維護</strong>：第 9 項僅包含首次上線環境設定。後續之網域年費、付費主機續約及日常維護，採實報實銷或另簽維護合約。</li>
-                    <li><strong>驗收與保固</strong>：各階段（UI 設計、前端切換、正式上線）皆設有驗收點。網站正式上線後，提供 <strong>3 個月內免費技術除錯（Bug Fixes）</strong>。</li>
-                </ol>
+            <!-- 內容表格 -->
+            <div class="content">
+                <h2 class="section-title">一、 報價明細表</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項次</th>
+                            <th>項目名稱與規格說明</th>
+                            <th style="text-align: right;">預估費用 (NTD)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricing-tbody">
+                        <!-- 資料由 script.js 動態載入 -->
+                    </tbody>
+                </table>
+
+                <!-- 總計區 -->
+                <div class="total-section">
+                    <div class="total-row">
+                        <span>未稅總計 (Subtotal)</span>
+                        <span id="subtotal-display">載入中...</span>
+                    </div>
+                </div>
+
+                <!-- 備註區 -->
+                <div class="notes">
+                    <h3>二、 專案條款與備註說明</h3>
+                    <ol>
+                        <li><strong>付款機制</strong>：本專案採用二階段付款方式：
+                            <ul style="list-style: none; padding-left: 15px; margin-top: 5px;">
+                                <li>• 第一期 (頭款 50%)：<strong>NT$ 35,000</strong> - 於合約確認與專案啟動時支付。</li>
+                                <li>• 第二期 (尾款 50%)：<strong>NT$ 35,000</strong> - 於專案驗收完成、網站正式上線後結清。</li>
+                            </ul>
+                        </li>
+                        <li><strong>多語系與翻譯協定</strong>：第 6 項包含前端多語系切換技術架構。文字內容由客戶提供或協助產出初稿，若需大量專業外文翻譯另議。</li>
+                        <li><strong>網域與主機維護</strong>：第 9 項僅包含首次上線環境設定。後續之網域年費、付費主機續約及日常維護，採實報實銷或另簽維護合約。</li>
+                        <li><strong>驗收與保固</strong>：各階段（UI 設計、前端切換、正式上線）皆設有驗收點。網站正式上線後，提供 <strong>3 個月內免費技術除錯（Bug Fixes）</strong>。</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- 引入獨立的 JS 檔案 -->
+    <script src="script.js"></script>
 </body>
 </html>
