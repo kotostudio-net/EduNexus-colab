@@ -66,13 +66,19 @@
             margin-bottom: 24px;
         }
 
+        /* 密碼輸入框外層包裝（用來定位眼睛按鈕） */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
         .auth-card input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 45px 12px 16px; /* 右側留空間給眼睛按鈕 */
             font-size: 16px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-bottom: 16px;
             outline: none;
             transition: border-color 0.2s;
         }
@@ -81,7 +87,27 @@
             border-color: var(--secondary-color);
         }
 
-        .auth-card button {
+        /* 眼睛切換按鈕 */
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-card button.submit-btn {
             width: 100%;
             padding: 12px;
             background-color: var(--primary-color);
@@ -94,7 +120,7 @@
             transition: background-color 0.2s;
         }
 
-        .auth-card button:hover {
+        .auth-card button.submit-btn:hover {
             background-color: #1e40af;
         }
 
@@ -305,8 +331,19 @@
         <div class="auth-card">
             <h2>專案報價單保護</h2>
             <p>請輸入授權密碼以檢閱內容</p>
-            <input type="password" id="password-input" placeholder="請輸入解密密碼">
-            <button onclick="verifyPassword()">解鎖檢視報價</button>
+            
+            <div class="password-wrapper">
+                <input type="password" id="password-input" placeholder="請輸入解密密碼">
+                <!-- 眼睛按鈕 (切換密碼可見性) -->
+                <button type="button" class="toggle-password" id="toggle-pw-btn" onclick="togglePasswordVisibility()" title="顯示/隱藏密碼">
+                    <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="verifyPassword()">解鎖檢視報價</button>
             <div id="error-msg" class="error-msg"></div>
         </div>
     </div>
